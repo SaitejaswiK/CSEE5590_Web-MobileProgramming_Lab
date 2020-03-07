@@ -1,0 +1,10 @@
+
+Snake/snakeapp/package-lock.json
+
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+/node_modules
+Snake/snakeapp/README.md
