@@ -22,11 +22,12 @@ export class AppComponent {
 	food: "#f4f4f4",
 	head: "#3c9036",
 	tail: "#63d15c",
-	board: "#9dded0"
+	board: "#a3c2c1"
   }
   game_over = false;
   board = [];
   game_on = false;
+  inter = 0;
   food = {x: -1, y: -1};
   current_dir = this.control.left;
   
@@ -53,7 +54,7 @@ export class AppComponent {
 	  }
   }
   
-  key_press(press) {
+  key_press(press: KeyboardEvent) {
 	//Handle control key strokes to move the snake
 	if (press.keyCode === this.control.left && this.snake.direct !== this.control.right){
 		this.current_dir = this.control.left;
@@ -124,7 +125,9 @@ export class AppComponent {
 	
 	this.snake.direct = this.current_dir;
 	
-	 
+	setTimeout(() => {
+		this.update_location();
+	}, this.inter);
   }
   
   food_reset(){
@@ -140,18 +143,26 @@ export class AppComponent {
   
   eat_food(){
 	//Add tail piece to snake
+	let snake_tail = Object.assign({}, this.snake.parts[this.snake.parts.length - 1]);
+	
+	this.snake.parts.push(snake_tail);
+	this.food_reset();
+	
   }
   
   board_hit(piece){
 	//Check if snake collides with edge
+	return piece.x === 20 || piece.y === 20 || piece.x === -1 || piece.y === -1;
   }
   
   self_hit(piece){
 	//Check if snake collides with self
+	return this.board[piece.y][piece.x] === true;
   }
   
   food_hit(piece){
 	//Check if snake collides with food
+	return piece.x === this.food.x && piece.y === this.food.y;
   }
   
   game_end(){
@@ -167,6 +178,7 @@ export class AppComponent {
 	this.game_on = true;
 	this.current_dir = this.control.left;
 	this.game_over = false;
+	this.inter = 150;
 	
 	this.snake = {direct: this.control.left, parts: []};
 	

@@ -6,9 +6,7 @@
 		Click to Start
 	</div>
 	<div class = "row" *ngFor = "let col of board; let i = index;">
-		<div class = "col" [ngStyle] = "{background-color: snake_location (i, j)}" *ngFor = "let row of col; let j = index">
-		</div>
+		<div class = "col" [ngStyle] = "{'background-color': snake_location (i, j)}" *ngFor = "let row of col; let j = index"></div>
 	</div>
-	
 </div>
 
