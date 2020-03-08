@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  host: {
-	"(document.keydown)": "key_press($event)"
-  }
+  
 })
 export class AppComponent {
   title = 'Snake App';
   control = {
 	  //Set controls to WASD
-	  left: 65,
-	  right: 68,
-	  up: 87,
-	  down: 83
+	  left: 97, //A
+	  right: 100, //D
+	  up: 119, //W
+	  down: 115 //S
   };
   
   game_colors = {
 	food: "#f4f4f4",
 	head: "#3c9036",
 	tail: "#63d15c",
-	board: "#a3c2c1"
+	board: "#a3c2c1",
+	lose: "#ab3300"
   }
   game_over = false;
   board = [];
@@ -54,8 +54,11 @@ export class AppComponent {
 	  }
   }
   
-  key_press(press: KeyboardEvent) {
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(press: KeyboardEvent) {
 	//Handle control key strokes to move the snake
+	console.log(press.keyCode);
+	console.log(press);
 	if (press.keyCode === this.control.left && this.snake.direct !== this.control.right){
 		this.current_dir = this.control.left;
 	}
@@ -90,7 +93,10 @@ export class AppComponent {
   
   snake_location(col, row) {
 	//Set the color to reflect movement of the snake and food
-	if (this.food.x === row && this.food.y === col){
+	if (this.game_over) {
+		return this.game_colors.lose;
+	}
+	else if (this.food.x === row && this.food.y === col){
 		return this.game_colors.food;
 	}
 	else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col){
