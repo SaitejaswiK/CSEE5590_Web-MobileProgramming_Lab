@@ -1,0 +1,49 @@
+.signupcontainer{
+    position: relative;
+    top: 50px;
+
+  }
+  .signdiv{
+    background: #e6ffe6;
+    color: white;
+    border: .2em;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    height: 500px;
+  }
+h1{
+  position: center;
+  text-align: center;
+  top: 200px;
+  color: olive;
+}
+  .username{
+      position: relative;
+      top: 10%;
+      color: black;
+  }
+
+  .password
+  {
+    position: relative;
+    top: 10%;
+  }
+  .signuptext{
+      position: relative;
+      top: 5%;
+      text-align: center;
+      color:black;
+  }
+  .signupbtn{
+    position: relative;
+    left: 40%;
+    top: 100px;
+  }
+
+  .text{
+      text-align: center;
+      position: relative;
+      top: 32%;
+      color: white;
+  }
