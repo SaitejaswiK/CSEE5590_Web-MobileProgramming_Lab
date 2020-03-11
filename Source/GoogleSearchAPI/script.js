@@ -6,7 +6,7 @@ function getInfo(user) {
         'query': username,
         'limit': 1,
         'indent': true,
-        'key': 'AIzaSyCoGPo-pprQ_ievWYSQP5Dx9Dm8HEjG6rA',
+        'key': '<API-Key>',
     };
 
 
