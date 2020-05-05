@@ -73,10 +73,6 @@ public class SQLHelper extends SQLiteOpenHelper {
                 KEY_USER_NAME + "=?", new String[]{user.username}, null, null, null);
 
         if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
-            Log.i("i", cursor.getString(0));
-            Log.i("i", cursor.getString(1));
-            Log.e("E", "Reached user gen");
-            //if cursor has value then in user database there is user associated with this given email
             User user_test = new User(cursor.getString(0), cursor.getString(1),
                      "Test", "Test", "Test", "Test");
 
@@ -100,4 +96,5 @@ public class SQLHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+
 }

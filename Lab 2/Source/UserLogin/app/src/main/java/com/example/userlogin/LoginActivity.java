@@ -40,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (currentUser != null) {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
                         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                        intent.putExtra("first", currentUser.first_name);
+                        intent.putExtra("last", currentUser.last_name);
+                        intent.putExtra("movie", currentUser.movie);
+                        intent.putExtra("book", currentUser.book);
                         startActivity(intent);
                         finish();
                     } else {
